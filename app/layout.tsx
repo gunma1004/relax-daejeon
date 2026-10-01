@@ -13,15 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jungbuhealing.netlify.app"),
+  metadataBase: new URL("https://jungbumassage.netlify.app"),
   title: {
-    template: "%s | 중부건마힐링케어",
-    default: "중부건마힐링케어 | 대전·청주·세종·천안·전주 마사지 & 힐링 테라피",
+    template: "%s | 중부마사지넷",
+    default: "중부마사지넷 | 대전·청주·세종·천안·전주 마사지 & 테라피 정보",
   },
   description:
-    "대전, 청주, 세종, 천안, 아산, 공주, 계룡, 논산, 옥천, 금산, 익산, 전주 마사지·스파·에스테틱 정보 안내. 타이, 아로마, 스웨디시 힐링 케어 샵 추천 및 예약 가이드.",
+    "대전, 청주, 세종, 천안, 아산, 공주, 계룡, 논산, 옥천, 금산, 익산, 전주 전 지역 힐링 마사지·스파·에스테틱 정보. 타이, 아로마, 스웨디시 샵 추천 및 예약 안내.",
   keywords: [
-    "중부건마힐링케어",
+    "중부마사지넷",
+    "중부마사지",
     "대전마사지",
     "청주마사지",
     "세종마사지",
@@ -34,23 +35,30 @@ export const metadata: Metadata = {
     "금산마사지",
     "익산마사지",
     "전주마사지",
-    "스파",
-    "아로마테라피",
     "스웨디시",
     "타이마사지",
-    "바디케어",
+    "아로마테라피",
+    "1인샵",
+    "홈타이",
+    "에스테틱",
   ],
   alternates: {
-    canonical: "https://jungbuhealing.netlify.app",
+    canonical: "https://jungbumassage.netlify.app",
   },
   openGraph: {
-    title: "중부건마힐링케어 | 중부권 마사지 & 힐링 케어 플랫폼",
+    title: "중부마사지넷 | 대전·충청·전북 힐링 마사지 플랫폼",
     description:
-      "대전·청주·세종·충청·전북 전 지역 마사지, 스파, 아로마 테라피 힐링 샵 엄선 정보 안내.",
-    url: "https://jungbuhealing.netlify.app",
-    siteName: "중부건마힐링케어",
+      "대전, 청주, 세종, 천안, 아산, 익산, 전주 등 중부권 검증된 마사지·스웨디시·스파 샵 정보를 한눈에 확인하세요.",
+    url: "https://jungbumassage.netlify.app",
+    siteName: "중부마사지넷",
     locale: "ko_KR",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "중부마사지넷 | 대전·충청·전북 힐링 마사지 플랫폼",
+    description:
+      "대전, 청주, 세종, 천안, 전주 등 중부권 마사지·스웨디시·스파 정보 안내",
   },
   robots: {
     index: true,

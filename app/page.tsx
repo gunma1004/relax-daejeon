@@ -3,16 +3,16 @@ import Image from "next/image";
 import { CITIES_DATA, DOMAIN, BRAND_NAME } from "@/app/data";
 
 export const metadata = {
-  title: `${BRAND_NAME} | 중부권 마사지·에스테틱·스파 힐링 케어 정보 포털`,
+  title: `${BRAND_NAME} | 대전·청주·천안 출장 프라이빗케어 마사지 & 테라피 정보`,
   description:
-    "대전, 청주, 세종, 천안, 아산, 공주, 계룡, 논산, 옥천, 금산, 익산, 전주 전 지역 건식 마사지, 아로마 테라피, 스웨디시 전문 샵 정보 및 예약 안내.",
+    "대전, 청주, 세종, 천안 시·군 출장 마사지, 타이, 아로마, 스웨디시, 1인샵 테라피 매장 정보 및 코스별 가격 안내.",
   alternates: {
     canonical: DOMAIN,
   },
   openGraph: {
-    title: `${BRAND_NAME} | 중부권 마사지·힐링 케어 플랫폼`,
+    title: `${BRAND_NAME} | 대전·청주·천안 출장 프라이빗케어 마사지 플랫폼`,
     description:
-      "대전·충청·전북 12개 지역 엄선된 힐링 마사지 및 에스테틱 샵 정보 안내.",
+      "대전·청주·세종·천안 등 충청·전북 12개 지역 엄선된 출장마사지·스웨디시 제휴 샵 안내.",
     url: DOMAIN,
     siteName: BRAND_NAME,
     locale: "ko_KR",
@@ -23,20 +23,20 @@ export const metadata = {
 export default function HomePage() {
   const customerServicePhone = "0507-1280-3335";
 
-  // 12개 권역 리스트
+  // 12개 권역 리스트 (지역 핵심 상권 키워드 포함)
   const targetRegions = [
-    { name: "대전", slug: "daejeon", desc: "유성·서구·중구 등 전지역" },
-    { name: "청주", slug: "cheongju", desc: "흥덕·청원·상당·서원" },
-    { name: "세종", slug: "sejong", desc: "나성·보람·어진·조치원" },
-    { name: "천안", slug: "cheonan", desc: "불당·두정·성정·쌍용" },
-    { name: "아산", slug: "asan", desc: "온천·배방·탕정 테라피" },
-    { name: "공주", slug: "gongju", desc: "신관·금흥 힐링 스파" },
-    { name: "계룡", slug: "gyeryong", desc: "엄사·금암 바디케어" },
-    { name: "논산", slug: "nonsan", desc: "취암·내동 아로마 케어" },
-    { name: "옥천", slug: "okcheon", desc: "옥천읍 힐링 마사지" },
-    { name: "금산", slug: "geumsan", desc: "금산읍 바디 테라피" },
+    { name: "대전", slug: "daejeon", desc: "유성·둔산·월평·봉명 등 전지역" },
+    { name: "청주", slug: "cheongju", desc: "복대·율량·가경·오창 테라피" },
+    { name: "세종", slug: "sejong", desc: "나성·도담·보람·조치원 스파" },
+    { name: "천안", slug: "cheonan", desc: "불당·두정·성정·백석 힐링샵" },
+    { name: "아산", slug: "asan", desc: "온천·배방·탕정 프리미엄 케어" },
+    { name: "공주", slug: "gongju", desc: "신관·금흥·중동 바디 테라피" },
+    { name: "계룡", slug: "gyeryong", desc: "엄사·금암 건식/아로마" },
+    { name: "논산", slug: "nonsan", desc: "취암·내동 맞춤형 힐링 케어" },
+    { name: "옥천", slug: "okcheon", desc: "옥천읍 감성 테라피/타이" },
+    { name: "금산", slug: "geumsan", desc: "금산읍 전신 바디 & 스킨" },
     { name: "익산", slug: "iksan", desc: "영등·모현·신동 스웨디시" },
-    { name: "전주", slug: "jeonju", desc: "완산·덕진·효자·신시가지" },
+    { name: "전주", slug: "jeonju", desc: "신시가지·효자·덕진·송천" },
   ];
 
   // 동적 링크 수집 (CITIES_DATA 기반 매핑)
@@ -56,7 +56,7 @@ export default function HomePage() {
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      name: `${BRAND_NAME} 중부권 힐링 테라피 포털`,
+      name: `${BRAND_NAME} 중부권 마사지 포털`,
       url: DOMAIN,
       description:
         "대전, 청주, 세종, 천안, 전주 등 중부권 12개 시군 마사지·스파·에스테틱 샵 정보 포털",
@@ -64,10 +64,10 @@ export default function HomePage() {
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: "중부권 제휴 샵 안내 지역",
+      name: "중부마사지넷 제휴 및 추천 지역",
       itemListElement: (allLinks.length > 0
         ? allLinks
-        : targetRegions.map((r, i) => ({
+        : targetRegions.map((r) => ({
             title: `${r.name} 마사지 테라피`,
             url: `/${r.slug}`,
           }))
@@ -82,7 +82,7 @@ export default function HomePage() {
 
   return (
     <div className="bg-[#0b0914] text-white font-sans min-h-screen relative overflow-x-hidden pb-32">
-      {/* 검색엔진 수집용 시맨틱 링크 (DOM) */}
+      {/* 검색엔진 크롤링용 시맨틱 링크 (DOM 숨김) */}
       <div className="sr-only" aria-hidden="true">
         <ul>
           {allLinks.map((item, idx) => (
@@ -122,7 +122,7 @@ export default function HomePage() {
               href={`tel:${customerServicePhone}`}
               className="px-4 py-1.5 rounded-full bg-[#00ff88] text-black font-black text-xs hover:scale-105 transition-transform"
             >
-              📞 고객센터 안내
+              📞 입점·예약 문의
             </a>
           </div>
         </div>
@@ -131,14 +131,14 @@ export default function HomePage() {
       {/* 메인 히어로 섹션 */}
       <section className="py-14 px-4 max-w-[960px] mx-auto text-center">
         <span className="inline-block px-4 py-1 rounded-full bg-[#00ff88]/10 text-[#00ff88] border border-[#00ff88]/30 font-bold text-xs mb-4">
-          CHUNGCHEONG & JEONBUK MASSAGE GUIDE
+          CENTRAL KOREA MASSAGE & SPA GUIDE
         </span>
         <h1 className="text-3xl sm:text-5xl font-black leading-tight tracking-tight mb-4 text-white">
           중부권 마사지 & 프리미엄 테라피
         </h1>
         <p className="text-[#d8d2ea] text-base sm:text-lg mb-8 max-w-[720px] mx-auto leading-relaxed">
-          대전, 세종, 충남, 충북, 전북 12개 권역의 검증된 전문 샵을 한눈에 비교하세요.<br className="hidden sm:inline" />
-          쾌적한 시설 정보, 코스별 가격, 실시간 예약 현황을 투명하게 안내합니다.
+          대전, 세종, 충남, 충북, 전북 12개 권역의 검증된 힐링 매장을 한눈에 비교하세요.<br className="hidden sm:inline" />
+          쾌적한 룸 컨디션, 정찰제 코스 요금, 고객 맞춤 추천을 실시간으로 확인하실 수 있습니다.
         </p>
 
         {/* 12개 지역 퀵 네비게이션 칩 */}
@@ -160,19 +160,19 @@ export default function HomePage() {
         <div className="max-w-[1000px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs sm:text-sm font-bold">
           <div className="flex items-center justify-center gap-2">
             <span className="text-[#00ff88] text-lg">🏢</span>
-            <span>엄선된 정식 등록 제휴 샵</span>
+            <span>검증된 정식 제휴 매장</span>
           </div>
           <div className="flex items-center justify-center gap-2">
             <span className="text-[#00ff88] text-lg">📋</span>
-            <span>정찰제 요금 및 코스 안내</span>
+            <span>투명한 정찰제 가격</span>
           </div>
           <div className="flex items-center justify-center gap-2">
             <span className="text-[#00ff88] text-lg">🛡</span>
-            <span>위생·방역 관리 인증</span>
+            <span>청결·위생 관리 매장</span>
           </div>
           <div className="flex items-center justify-center gap-2">
             <span className="text-[#00ff88] text-lg">🧭</span>
-            <span>중부권 12개 시·군 통합 안내</span>
+            <span>중부·호남 12개 시·군 통합</span>
           </div>
         </div>
       </section>
@@ -183,7 +183,7 @@ export default function HomePage() {
           <div className="text-center mb-10">
             <p className="text-[#00ff88] font-extrabold text-xs tracking-widest mb-1">REGIONAL DIRECTORY</p>
             <h2 className="text-2xl sm:text-3xl font-black text-white">중부권 12개 지역 안내</h2>
-            <p className="text-gray-400 text-sm mt-1">이용을 원하시는 지역을 선택하여 상세 제휴 샵 리스트를 확인해 보세요.</p>
+            <p className="text-gray-400 text-sm mt-1">원하시는 지역을 선택하시면 상세 매장 목록과 세부 코스를 보실 수 있습니다.</p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5">
@@ -199,7 +199,7 @@ export default function HomePage() {
                       {region.name} 마사지
                     </span>
                     <span className="text-[10px] text-[#00ff88] bg-[#00ff88]/10 px-1.5 py-0.5 rounded font-bold">
-                      추천
+                      인기
                     </span>
                   </div>
                   <p className="text-xs text-gray-400 line-clamp-1">{region.desc}</p>
@@ -208,7 +208,7 @@ export default function HomePage() {
                   href={`/${region.slug}`}
                   className="mt-3.5 w-full py-1.5 rounded-lg bg-white/5 hover:bg-[#00ff88] hover:text-black text-gray-300 text-xs font-bold text-center transition-all block"
                 >
-                  매장 둘러보기 →
+                  매장 보기 →
                 </Link>
               </div>
             ))}
@@ -219,8 +219,8 @@ export default function HomePage() {
         <section id="course">
           <div className="text-center mb-8">
             <p className="text-[#ba8cff] font-extrabold text-xs tracking-widest mb-1">PROGRAM & PRICE</p>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">표준 관리 프로그램 안내</h2>
-            <p className="text-gray-400 text-sm mt-1">제휴 샵에서 제공하는 공통 테라피 프로그램 기준 요금입니다.</p>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">표준 테라피 코스 안내</h2>
+            <p className="text-gray-400 text-sm mt-1">제휴 샵에서 제공하는 대표 관리 코스 및 기준 요금입니다.</p>
           </div>
 
           <div className="space-y-4">
@@ -254,9 +254,9 @@ export default function HomePage() {
               <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🌸</span>
-                  <h3 className="text-lg font-black text-white">천연 에센셜 아로마 테라피</h3>
+                  <h3 className="text-lg font-black text-white">천연 에센셜 아로마 케어</h3>
                 </div>
-                <span className="text-xs text-[#ba8cff] font-bold bg-[#ba8cff]/10 px-2.5 py-1 rounded-full border border-[#ba8cff]/30">스트레스 완화 & 보습</span>
+                <span className="text-xs text-[#ba8cff] font-bold bg-[#ba8cff]/10 px-2.5 py-1 rounded-full border border-[#ba8cff]/30">스트레스 완화 & 힐링</span>
               </div>
               <div className="grid grid-cols-3 gap-2 text-center text-xs sm:text-sm">
                 <div className="p-2.5 rounded-xl bg-white/5 border border-white/5">
@@ -281,7 +281,7 @@ export default function HomePage() {
                   <span className="text-lg">✨</span>
                   <h3 className="text-lg font-black text-[#ba8cff]">프리미엄 림프 스웨디시</h3>
                 </div>
-                <span className="text-xs text-black bg-[#ba8cff] font-black px-2.5 py-0.5 rounded-full">부드러운 압조절</span>
+                <span className="text-xs text-black bg-[#ba8cff] font-black px-2.5 py-0.5 rounded-full">부드러운 압 테라피</span>
               </div>
               <div className="grid grid-cols-3 gap-2 text-center text-xs sm:text-sm">
                 <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
@@ -301,29 +301,29 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 실제 매장 방문 후기 & 상담 안내 */}
+        {/* 제휴 샵 이용 후기 및 FAQ */}
         <section id="review">
           <div className="text-center mb-8">
             <p className="text-[#00ff88] font-extrabold text-xs tracking-widest mb-1">USER REVIEW & FAQ</p>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">제휴 샵 후기 및 이용 팁</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">이용 후기 및 가이드</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
             <div className="p-6 rounded-3xl bg-[#141024] border border-white/10 space-y-4">
               <h3 className="text-lg font-black text-white flex items-center gap-2 border-b border-white/10 pb-3">
-                <span>💬</span> 최신 방문 리뷰
+                <span>💬</span> 생생 이용 후기
               </h3>
               <div className="space-y-3 text-xs leading-relaxed">
                 <div className="p-3 rounded-2xl bg-white/5 border border-white/5">
-                  <p className="text-gray-200 mb-1">"대전 유성 샵 다녀왔는데 주차도 편하고 관리사님 압이 시원해서 만족했습니다."</p>
+                  <p className="text-gray-200 mb-1">"대전 유성온천역 근처 샵 다녀왔는데 주차도 편리하고 피로가 싹 풀렸습니다."</p>
                   <span className="text-[#00ff88] font-bold">- 대전 유성구 회원님</span>
                 </div>
                 <div className="p-3 rounded-2xl bg-white/5 border border-white/5">
-                  <p className="text-gray-200 mb-1">"청주 복대동 스웨디시 샵 조용하고 위생 상태가 아주 청결해서 재방문 의사 있습니다."</p>
+                  <p className="text-gray-200 mb-1">"청주 복대동 스웨디시 샵 룸 컨디션이 매우 청결하고 조용해서 힐링하기 좋았어요."</p>
                   <span className="text-[#ba8cff] font-bold">- 청주 흥덕구 회원님</span>
                 </div>
                 <div className="p-3 rounded-2xl bg-white/5 border border-white/5">
-                  <p className="text-gray-200 mb-1">"천안 불당동 아로마 관리 덕분에 뭉친 어깨가 많이 풀렸습니다."</p>
+                  <p className="text-gray-200 mb-1">"천안 불당동 아로마 케어 받았는데 뭉친 목과 어깨가 확실히 가벼워졌네요."</p>
                   <span className="text-gray-300 font-bold">- 천안 서북구 회원님</span>
                 </div>
               </div>
@@ -331,16 +331,16 @@ export default function HomePage() {
 
             <div className="p-6 rounded-3xl bg-[#141024] border border-white/10 space-y-4">
               <h3 className="text-lg font-black text-white flex items-center gap-2 border-b border-white/10 pb-3">
-                <span>❓</span> 이용 가이드 및 수칙
+                <span>❓</span> 자주 묻는 질문 (FAQ)
               </h3>
               <div className="space-y-3 text-xs leading-relaxed text-gray-300">
                 <div className="p-3 rounded-2xl bg-white/5 border border-white/5">
-                  <p className="font-bold text-white mb-0.5">Q. 예약은 어떻게 진행되나요?</p>
-                  <p className="text-gray-400">원하시는 지역의 제휴 샵 상세 페이지에서 유선 연결 또는 사전 예약 링크를 통해 간편하게 진행할 수 있습니다.</p>
+                  <p className="font-bold text-white mb-0.5">Q. 예약 및 결제는 어떻게 하나요?</p>
+                  <p className="text-gray-400">원하시는 지역 매장 페이지에서 전화 문의 또는 사전 예약을 진행하실 수 있으며, 현장 및 사전 결제 방식은 매장별 정책에 따릅니다.</p>
                 </div>
                 <div className="p-3 rounded-2xl bg-white/5 border border-white/5">
-                  <p className="font-bold text-white mb-0.5">Q. 건전 힐링 샵만 등록되어 있나요?</p>
-                  <p className="text-gray-400">{BRAND_NAME}은 사전 검증된 건전 바디케어 및 에스테틱 매장만을 엄선하여 등록하고 있습니다.</p>
+                  <p className="font-bold text-white mb-0.5">Q. 건전 힐링 샵만 등록되나요?</p>
+                  <p className="text-gray-400">{BRAND_NAME}은 이용 수칙을 준수하는 건전 테라피, 바디케어, 에스테틱 매장만을 정식 등록하여 운영합니다.</p>
                 </div>
               </div>
             </div>
@@ -357,7 +357,7 @@ export default function HomePage() {
         <p className="mt-4 text-gray-500">© 2026 {BRAND_NAME}. All rights reserved.</p>
       </footer>
 
-      {/* 모바일 하단 고정 바 */}
+      {/* 모바일 하단 고정 플로팅 바 */}
       <div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[calc(100%-20px)] max-w-[480px] bg-[#0b0914]/95 backdrop-blur-xl border border-white/20 p-2.5 rounded-2xl shadow-2xl z-50 flex gap-2">
         <a
           href="#area"

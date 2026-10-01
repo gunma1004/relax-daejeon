@@ -27,16 +27,17 @@ export interface CityData {
   districts: DistrictData[];
 }
 
-export const DOMAIN = "https://jungbuhealing.netlify.app";
-export const BRAND_NAME = "중부건마힐링케어";
+// 기본 도메인 및 브랜드명
+export const DOMAIN = "https://jungbumassage.netlify.app";
+export const BRAND_NAME = "중부마사지넷";
 
 export const KEYWORD_MODIFIERS = [
-  { prefix: "힐링", sub: "타이 스트레칭 & 전신 케어" },
-  { prefix: "타이", sub: "전신 이완 & 스트레칭 테라피" },
-  { prefix: "아로마", sub: "천연 에센셜 오일 릴렉싱" },
-  { prefix: "스웨디시", sub: "부드러운 림프 순환 케어" },
-  { prefix: "프리미엄 힐링", sub: "지친 일상 속 집중 피로회복" },
-  { prefix: "바디 컨디셔닝", sub: "전문 테라피 샵 케어 안내" },
+  { prefix: "힐링 타이", sub: "전신 근육 이완 & 스트레칭" },
+  { prefix: "아로마 테라피", sub: "천연 에센셜 오일 바디 케어" },
+  { prefix: "스웨디시", sub: "부드러운 감성 림프 순환 케어" },
+  { prefix: "1인샵 테라피", sub: "프라이빗 맞춤형 힐링 케어" },
+  { prefix: "로열 바디케어", sub: "지친 일상 속 집중 피로 회복" },
+  { prefix: "건식 & 아로마", sub: "체계적인 전문가 맞춤 관리" },
 ];
 
 export function getKeywordModifier(seedText: string) {
@@ -50,12 +51,15 @@ export function getKeywordModifier(seedText: string) {
 
 /** 
  * SEO 및 유사 문서 필터링 회피를 위한 동적 데이터 자동 생성 함수
- * (동 이름을 기반으로 매번 동일하지만, 다른 동과는 차별화된 텍스트와 FAQ를 주입합니다)
  */
-export function generateDongSEO(cityName: string, districtName: string, dongName: string, slug: string): DongData {
+export function generateDongSEO(
+  cityName: string,
+  districtName: string,
+  dongName: string,
+  slug: string
+): DongData {
   const modifier = getKeywordModifier(dongName);
-  
-  // 고유성 확보를 위한 해시 생성
+
   let hash = 0;
   for (let i = 0; i < dongName.length; i++) {
     hash = dongName.charCodeAt(i) + ((hash << 5) - hash);
@@ -63,49 +67,67 @@ export function generateDongSEO(cityName: string, districtName: string, dongName
   const absHash = Math.abs(hash);
 
   const bodies = [
-    `${cityName} ${districtName} ${dongName} 지역에서 완벽한 휴식을 찾고 계신가요? 이곳은 바쁜 일상에 지친 현대인들을 위해 ${modifier.sub} 프로그램을 중점적으로 제공하고 있습니다. 쾌적하고 프라이빗한 실내 환경에서 ${modifier.prefix} 전문 관리를 경험해 보세요. 주차 시설과 편의 시설이 완비되어 있어 언제든 편안하게 방문하실 수 있습니다.`,
-    `${districtName} ${dongName} 중심가에 위치하여 접근성이 뛰어난 테라피 공간들을 소개합니다. 단순한 휴식을 넘어선 ${modifier.prefix} 케어로 방문객들의 만족도가 매우 높습니다. 늦은 시간에도 부담 없이 방문하여 그날의 피로를 그날 바로 풀어보세요. 청결한 매장 관리와 체계적인 시스템으로 보답합니다.`,
-    `${cityName} 대표 상권인 ${dongName} 일대는 철저한 위생 관리와 차별화된 고객 응대 시스템을 갖춘 샵들이 다수 위치해 있습니다. 나만을 위한 집중 ${modifier.sub} 코스를 통해 잃어버린 활력을 되찾을 수 있는 최적의 장소입니다. 전문 테라피스트의 섬세한 손길로 진정한 휴식을 누려보세요.`
+    `${cityName} ${districtName} ${dongName} 인근에서 편안한 휴식을 찾고 계신가요? ${BRAND_NAME}에서는 바쁜 일상 속 누적된 피로를 해소할 수 있도록 ${modifier.sub} 프로그램을 제공하는 우수 샵을 엄선하여 안내합니다. 프라이빗하고 아늑한 룸에서 전문 테라피스트의 ${modifier.prefix} 관리를 직접 경험해 보세요.`,
+    `${districtName} ${dongName} 중심 상권에 위치하여 방문과 주차가 편리한 테라피 샵들을 모았습니다. 섬세한 압 조절과 ${modifier.sub} 코스로 고객 만족도가 높으며, 청결한 위생 관리와 정찰제 요금으로 안심하고 이용하실 수 있습니다. 오늘 하루의 피로를 편안하게 내려놓아 보세요.`,
+    `${cityName} ${dongName} 일대의 검증된 ${modifier.prefix} 힐링 공간을 소개합니다. 체계적인 고객 응대 시스템과 쾌적한 시설을 갖춘 매장들로, 나만을 위한 ${modifier.sub}를 통해 활력을 충전하기에 최적화되어 있습니다. 지금 바로 실시간 예약 현황과 코스 요금을 확인해 보세요.`
   ];
 
   const faqsList = [
     [
-      { question: `${dongName} 매장들은 주차가 가능한가요?`, answer: `네, 대부분의 매장이 건물 내 전용 주차장 또는 인근 제휴 주차장을 운영하고 있어 자차 방문이 매우 편리합니다.` },
-      { question: `예약 없이 방문해도 관리를 받을 수 있나요?`, answer: `원활한 ${modifier.prefix} 코스 진행과 대기 시간 최소화를 위해 100% 사전 예약제로 운영되는 곳이 많으니 방문 전 전화 문의를 권장합니다.` }
+      {
+        question: `${dongName} 마사지 매장은 주차가 가능한가요?`,
+        answer: `네, ${dongName} 내 대다수 제휴 샵은 건물 내 전용 주차 공간 또는 인근 공영/유료 주차장 지원을 제공하여 자차 이용이 편리합니다.`
+      },
+      {
+        question: `당일 예약 및 방문도 가능한가요?`,
+        answer: `가능합니다. 다만 원활한 ${modifier.prefix} 관리와 대기 시간 단축을 위해 방문 전 전화로 예약 현황을 미리 확인하시는 것을 권장합니다.`
+      }
     ],
     [
-      { question: `심야 시간이나 새벽에도 이용할 수 있나요?`, answer: `${dongName} 지역 특성상 직장인 분들을 위해 24시간 운영하거나 새벽 늦게까지 영업하는 매장들이 다수 준비되어 있습니다.` },
-      { question: `수면이 가능한 코스가 따로 있나요?`, answer: `일정 시간 이상의 ${modifier.sub} 코스를 이용하시는 고객님들에 한해 프라이빗 룸에서 수면이 가능한 매장들이 있습니다.` }
+      {
+        question: `야간이나 늦은 심야 시간에도 이용할 수 있나요?`,
+        answer: `${dongName} 지역 샵들은 직장인 및 늦은 시간 방문 고객을 위해 심야 영업 또는 24시간 연중무휴로 운영되는 곳이 다수 준비되어 있습니다.`
+      },
+      {
+        question: `수면이 가능한 코스가 준비되어 있나요?`,
+        answer: `일정 시간 이상의 ${modifier.sub} 코스를 이용하시거나 심야 시간대 방문 시 프라이빗 룸에서 편안하게 수면이 가능한 매장들이 있습니다.`
+      }
     ],
     [
-      { question: `초보자인데 어떤 코스를 추천하시나요?`, answer: `처음이시라면 부드러운 압으로 진행되는 ${modifier.prefix} 베이직 코스나 전신 이완을 돕는 ${modifier.sub} 코스를 가장 추천해 드립니다.` },
-      { question: `커플이나 친구와 함께 받을 수 있나요?`, answer: `네, ${dongName} 매장 중 다수가 2인실(커플룸)을 완비하고 있어 동반 방문 시에도 일행과 함께 프라이빗한 관리가 가능합니다.` }
+      {
+        question: `처음 방문하는데 어떤 코스를 선택해야 하나요?`,
+        answer: `처음이시라면 부담 없는 압으로 뭉친 근육을 부드럽게 이완시키는 ${modifier.prefix} 기본 코스나 천연 오일 ${modifier.sub} 코스를 추천해 드립니다.`
+      },
+      {
+        question: `2인실(커플룸) 동반 이용이 가능한가요?`,
+        answer: `네, ${dongName} 주요 제휴 샵에는 커플룸과 다인실이 구비되어 있어 연인, 친구, 동료와 함께 동반 관리를 받으실 수 있습니다.`
+      }
     ]
   ];
 
   return {
     slug,
     name: dongName,
-    seoTitle: `${cityName} ${districtName} ${dongName} 마사지 추천 - ${modifier.prefix} 및 ${modifier.sub}`,
-    seoDesc: `${cityName} ${districtName} ${dongName} 인근의 검증된 마사지, 스웨디시, 아로마 샵 정보를 제공합니다. ${modifier.sub} 전문 테라피스트와 함께하는 완벽한 힐링 공간.`,
-    contentHeading: `${dongName} 도심 속 프라이빗 ${modifier.prefix} 힐링 공간`,
+    seoTitle: `${cityName} ${districtName} ${dongName} 마사지 추천 - ${modifier.prefix} | ${BRAND_NAME}`,
+    seoDesc: `${cityName} ${districtName} ${dongName} 추천 마사지, 스웨디시, 아로마 샵 안내. ${modifier.sub} 전문 테라피 샵 가격, 위치 및 코스 정보 제공.`,
+    contentHeading: `${dongName} 프리미엄 ${modifier.prefix} 힐링 케어`,
     contentBody: bodies[absHash % bodies.length],
     faqs: faqsList[absHash % faqsList.length]
   };
 }
 
-// 데이터를 깔끔하게 매핑하기 위한 헬퍼 함수
-const makeDongs = (city: string, district: string, dongs: {slug: string, name: string}[]) => {
-  return dongs.map(d => generateDongSEO(city, district, d.name, d.slug));
+// 동 목록 생성 헬퍼 함수
+const makeDongs = (city: string, district: string, dongs: { slug: string; name: string }[]) => {
+  return dongs.map((d) => generateDongSEO(city, district, d.name, d.slug));
 };
 
 export const CITIES_DATA: Record<string, CityData> = {
-  // 1. 대전광역시 (5개구 전역 핵심 상권)
+  // 1. 대전광역시 (5개 자치구)
   daejeon: {
     slug: "daejeon",
     name: "대전",
     phone: "0507-1280-3335",
-    title: "대전 마사지 & 힐링 스파 안내",
+    title: "대전 마사지 & 프리미엄 테라피 안내",
     districts: [
       {
         slug: "yuseong",
@@ -176,7 +198,7 @@ export const CITIES_DATA: Record<string, CityData> = {
     ]
   },
 
-  // 2. 청주시
+  // 2. 청주시 (4개 구)
   cheongju: {
     slug: "cheongju",
     name: "청주",
@@ -257,12 +279,12 @@ export const CITIES_DATA: Record<string, CityData> = {
     ]
   },
 
-  // 4. 천안시
+  // 4. 천안시 (동남구, 서북구)
   cheonan: {
     slug: "cheonan",
     name: "천안",
     phone: "0507-1280-3335",
-    title: "천안 마사지 & 에스테틱 포털",
+    title: "천안 마사지 & 스웨디시 포털",
     districts: [
       {
         slug: "seobuk",
@@ -365,9 +387,9 @@ export const CITIES_DATA: Record<string, CityData> = {
         slug: "main",
         name: "논산권",
         dongs: makeDongs("논산", "논산권", [
-          { slug: "chwiwon", name: "취암동" },
+          { slug: "chwiam", name: "취암동" },
           { slug: "naedong", name: "내동" },
-          { slug: "buhwang", name: "부창동" },
+          { slug: "buchang", name: "부창동" },
           { slug: "ganggyeong", name: "강경읍" },
           { slug: "yeonmu", name: "연무읍" }
         ])
@@ -435,7 +457,7 @@ export const CITIES_DATA: Record<string, CityData> = {
     ]
   },
 
-  // 12. 전주시
+  // 12. 전주시 (완산구, 덕진구)
   jeonju: {
     slug: "jeonju",
     name: "전주",
@@ -459,7 +481,7 @@ export const CITIES_DATA: Record<string, CityData> = {
         name: "덕진구",
         dongs: makeDongs("전주", "덕진구", [
           { slug: "songcheon", name: "송천동" },
-          { slug: "injeok", name: "인후동" },
+          { slug: "inhoo", name: "인후동" },
           { slug: "deokjin-dong", name: "덕진동" },
           { slug: "geumam-jj", name: "금암동" },
           { slug: "ujeon", name: "우아동" },
