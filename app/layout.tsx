@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   verification: {
     google: "LA_pPxDDG8woTpUkC-go8lX1KK6GvlR9z0izx4KkUMM",
     other: {
-      "naver-site-verification": "b658c45bbee78c6c29d361167e65cc845f195901",
+      "naver-site-verification": "4eeb27667de232cdd8c5cdcd3c0eafa45c2adc2a", // 새로 발급받은 네이버 토큰
     },
   },
 };
