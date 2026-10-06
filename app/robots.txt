@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jungbumassage.netlify.app/sitemap.xml
+Sitemap: https://relax-daejeon.netlify.app/sitemap.xml

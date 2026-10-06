@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 // 규칙 1: 타이틀은 '출장 [수식어] 마사지'로 분리 구조 유지
 // 규칙 2: 디스크립션은 지역명 뒤에 '출장 마사지' 필수 결합
 export const SEO_PATTERNS = [
+  { t: "출장 S슬림 마사지 & 림프 케어", d: "출장 마사지 전문 힐링 가이드. 붓기 완화 및 전신 S슬림 림프 테라피와 정찰제 가격 정보." },
   { t: "출장 스웨디시 마사지 & 감성 케어", d: "출장 마사지 전문 힐링 가이드. 부드러운 림프 순환 테라피와 정찰제 가격 정보." },
   { t: "출장 리프레쉬 마사지 & 피로 회복", d: "출장 마사지 추천 플랫폼. 뭉친 전신 근육을 개운하게 풀어주는 활력 테라피 코스." },
   { t: "출장 힐링 마사지 & 프리미엄 테라피", d: "출장 마사지 엄선 정보 포털. 지친 일상 속 편안한 휴식을 제공하는 안심 케어 매장." },
@@ -36,7 +37,7 @@ export const SEO_PATTERNS = [
   { t: "출장 센시티브 스웨디시 마사지 추천", d: "출장 마사지 이용 팁. 특유의 부드럽고 따뜻한 리듬감으로 깊은 이완을 주는 감성 코스." },
   { t: "출장 힐링 바디 마사지 & 릴렉스 포털", d: "출장 마사지 실시간 매칭. 철저한 위생 수칙 준수와 편안한 룸 컨디션을 갖춘 샵." },
   { t: "출장 모던 스웨디시 마사지 & 감각 케어", d: "출장 마사지 전문 큐레이션. 감각적인 공간에서 경험하는 수준 높은 유러피언 테라피." },
-  { t: "출장 쾌적 힐링 마사지 & 안심 테라피", d: "출장 마사지 공식 등록처. 언제나 쾌적하고 안전하게 믿고 찾는 중부권 대표 테라피." },
+  { t: "출장 쾌적 힐링 마사지 & 안심 테라피", d: "출장 마사지 공식 등록처. 언제나 쾌적하고 안전하게 믿고 찾는 대표 테라피." },
   { t: "출장 젠틀 아로마 마사지 & 순환 케어", d: "출장 마사지 상세 코스 확인. 자극 없이 부드러운 손길로 림프 흐름을 원활히 돕는 관리." },
   { t: "출장 프라이빗 힐링 마사지 & 프리미엄 룸", d: "출장 마사지 예약 가이드. 철저한 사생활 보호와 안락함이 보장되는 맞춤 힐링 스파." },
   { t: "출장 수기 전통 마사지 & 근육 이완", d: "출장 마사지 비교 플랫폼. 기계 관리와 차별화된 베테랑 손길로 뻐근함을 풀어냅니다." },
@@ -102,11 +103,11 @@ export async function generateMetadata({
   const areaFullName = `${cityInfo.name} ${districtInfo.name}`;
   const pattern = getSeoPattern(`${areaFullName}_district_seo_v5`);
 
-  // 타이틀: '출장 [키워드] 마사지' 분리 구조
-  const title = `${areaFullName} ${pattern.t} | ${BRAND_NAME}`;
+  // 타이틀: [구이름] 출장 마사지 [도시명] - [수식어] | [브랜드명]
+  const title = `${districtInfo.name} 출장 마사지 ${cityInfo.name} - ${pattern.t} | ${BRAND_NAME}`;
   
-  // 메타디스크립션: 지역명 뒤에 '출장 마사지' 필수 배치
-  const description = `${areaFullName} ${pattern.d}`;
+  // 메타디스크립션: 지역명 바로 뒤 '출장 마사지' 결합
+  const description = `${areaFullName} 출장 마사지 전문 1위 안내. ${pattern.d} 24시간 실시간 신속 방문 예약.`;
   const url = `${DOMAIN}/${city}/${district}`;
 
   return {
@@ -134,19 +135,19 @@ function getDistrictContent(cityName: string, districtName: string, patternDesc:
   const absHash = Math.abs(hash);
 
   const bodies = [
-    `${areaFullName} 전 지역을 아우르는 프리미엄 테라피 및 출장 케어 서비스망입니다. ${patternDesc} 바쁜 일상과 과도한 스트레스에 지친 분들을 위해 ${districtName} 전역 어디서나 빠르게 맞춤 힐링을 누리실 수 있도록 연결해 드립니다. 체계적인 위생 관리와 내상 없는 정찰제 시스템으로 최상의 릴렉스를 선사합니다.`,
-    `${areaFullName}에서 믿고 선택할 수 있는 안심 힐링 테라피 가이드입니다. 퇴근 후 자택이나 머무시는 숙소에서 편안하게 ${districtName} 최고 수준의 관리를 경험해 보세요. 숙련된 전문 테라피스트들의 정성 어린 손길로 굳어있던 심신을 부드럽게 이완시켜 드립니다.`,
-    `핵심 상권과 아늑한 주거지가 공존하는 ${areaFullName} 맞춤형 스웨디시 & 테라피 안내 센터입니다. ${patternDesc} ${districtName} 주요 역세권부터 주거 단지까지 촘촘한 제휴 네트워크를 바탕으로 신속하고 편리한 안내를 약속드립니다. 투명한 정찰 요금제와 친절한 고객 응대로 기분 좋은 휴식을 완성해 드립니다.`
+    `${areaFullName} 전 지역을 아우르는 프리미엄 출장 마사지 및 맞춤 케어 서비스망입니다. ${patternDesc} 바쁜 일상과 과도한 스트레스에 지친 분들을 위해 ${districtName} 전역 어디서나 빠르게 맞춤 힐링을 누리실 수 있도록 연결해 드립니다. 체계적인 청결 관리와 투명한 정찰제 시스템으로 최상의 릴렉스를 선사합니다.`,
+    `${areaFullName}에서 믿고 선택할 수 있는 안심 출장 힐링 테라피 가이드입니다. 퇴근 후 자택이나 머무시는 호텔, 오피스텔 등에서 편안하게 ${districtName} 최고 수준의 관리를 경험해 보세요. 숙련된 전문 테라피스트들의 정성 어린 손길로 굳어있던 심신을 부드럽게 이완시켜 드립니다.`,
+    `핵심 상권과 아늑한 주거지가 공존하는 ${areaFullName} 맞춤형 출장 스웨디시 & S슬림 테라피 안내 센터입니다. ${patternDesc} ${districtName} 주요 역세권부터 주거 단지까지 촘촘한 제휴 네트워크를 바탕으로 신속하고 편리한 안내를 약속드립니다. 투명한 정찰 요금제와 친절한 고객 응대로 기분 좋은 휴식을 완성해 드립니다.`
   ];
 
   const faqsList = [
     [
-      { q: `${districtName} 전 지역 방문 및 이용이 가능한가요?`, a: `네, ${districtName} 내 주요 번화가와 역세권은 물론 외곽 주거 단지 및 숙소까지 폭넓은 제휴망을 통해 신속하게 안내해 드리고 있습니다.` },
-      { q: `결제 방식과 요금 체계는 어떻게 되나요?`, a: `선입금 사기 피해가 전혀 없도록 100% 현장 후불제(현금, 계좌이체 등 매장별 기준) 및 정찰제 요금으로 투명하고 안전하게 운영됩니다.` }
+      { q: `${districtName} 전 지역 방문 및 출장 이용이 가능한가요?`, a: `네, ${districtName} 내 주요 번화가와 역세권은 물론 외곽 주거 단지, 아파트, 호텔 및 모텔 숙소까지 폭넓은 네트워크를 통해 30분 내외로 신속하게 방문 안내해 드립니다.` },
+      { q: `결제 방식과 요금 체계는 어떻게 되나요?`, a: `선입금 사기 걱정 없는 100% 현장 후불제(현금, 계좌이체 등) 및 정찰제 요금으로 투명하고 안전하게 운영됩니다.` }
     ],
     [
-      { q: `${districtName} 테라피스트의 관리 수준은 어떤가요?`, a: `체계적인 마사지 교육 과정을 이수하고 풍부한 실무 경험을 갖춘 전문 테라피스트들이 고객님의 바디 컨디션에 맞춘 섬세한 케어를 제공합니다.` },
-      { q: `심야나 새벽 시간에도 이용할 수 있나요?`, a: `고객님들의 다양한 생활 패턴에 맞춰 늦은 심야나 24시간 연중무휴로 운영되는 제휴 매장들이 다수 준비되어 있어 언제든 편리하게 이용하실 수 있습니다.` }
+      { q: `${districtName} 테라피스트의 관리 수준은 어떤가요?`, a: `체계적인 교육 과정을 이수한 전문 테라피스트들이 고객님의 바디 컨디션에 맞춘 섬세한 림프 및 근육 이완 케어를 제공합니다.` },
+      { q: `심야나 새벽 시간에도 이용할 수 있나요?`, a: `고객님들의 다양한 생활 패턴에 맞춰 늦은 심야나 24시간 연중무휴로 운영되는 출장 시스템이 상시 준비되어 있어 언제든 편리하게 이용하실 수 있습니다.` }
     ]
   ];
 
@@ -173,7 +174,7 @@ export default async function DistrictPage({
   const areaFullName = `${cityInfo.name} ${districtInfo.name}`;
   const pattern = getSeoPattern(`${areaFullName}_district_seo_v5`);
   
-  // 구 단위 고유 텍스트 및 FAQ 가져오기 (패턴 디스크립션 결합)
+  // 구 단위 고유 텍스트 및 FAQ 가져오기
   const districtContent = getDistrictContent(cityInfo.name, districtInfo.name, `${areaFullName} ${pattern.d}`);
 
   return (
@@ -192,7 +193,7 @@ export default async function DistrictPage({
               href={`/${city}`}
               className="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors"
             >
-              {cityInfo.name} 시 전체
+              {cityInfo.name} 전체
             </Link>
             <a
               href={`tel:${cityInfo.phone}`}
@@ -207,15 +208,15 @@ export default async function DistrictPage({
       <main className="py-12 px-4 max-w-[960px] mx-auto text-center">
         {/* 상단 뱃지 */}
         <span className="inline-block px-3.5 py-1 rounded-full text-xs font-black mb-3 border border-[#00ff88]/40 bg-[#00ff88]/10 text-[#00ff88]">
-          {areaFullName.toUpperCase()} HEALING & BODY CARE
+          {areaFullName.toUpperCase()} MASSAGE & HEALING
         </span>
 
-        {/* H1: 패턴 기반 타이틀 매핑 */}
+        {/* H1: [구이름] 출장 마사지 [도시명] 형태 매핑 */}
         <h1 className="text-3xl sm:text-5xl font-black mb-6 break-keep">
-          {areaFullName} {pattern.t}
+          {districtInfo.name} 출장 마사지 ({cityInfo.name}) · {pattern.t}
         </h1>
 
-        {/* 네이버/구글 크롤러가 읽는 구 단위 고유 본문 */}
+        {/* 구 단위 고유 본문 */}
         <div className="text-[#d8d2ea] text-base sm:text-lg mb-12 max-w-[750px] mx-auto leading-relaxed text-justify break-keep">
           <p>{districtContent.body}</p>
         </div>
@@ -223,7 +224,7 @@ export default async function DistrictPage({
         {/* 구 단위 고유 FAQ */}
         <section className="text-left bg-[#141024] p-6 sm:p-8 rounded-3xl border border-white/10 mb-12 max-w-[800px] mx-auto">
           <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-            <span className="text-[#00ff88]">✓</span> {districtInfo.name} 자주 묻는 질문
+            <span className="text-[#00ff88]">✓</span> {districtInfo.name} 출장 마사지 이용 안내 (FAQ)
           </h3>
           <div className="space-y-4">
             {districtContent.faqs.map((faq, idx) => (
@@ -235,25 +236,26 @@ export default async function DistrictPage({
           </div>
         </section>
 
-        {/* 동별 매장 및 테라피 목록 */}
+        {/* 동별 매장 및 테라피 목록: "[동] 출장 마사지 [구] 대전" 반영 */}
         <section className="mb-12 text-left">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-xl font-bold text-gray-200 flex items-center gap-2">
               <span className="w-1.5 h-5 bg-[#00ff88] rounded-full"></span>
-              📍 {districtInfo.name} 동별 맞춤 서비스 선택
+              📍 {districtInfo.name} 동별 출장 마사지 바로가기
             </h2>
             <Link
               href={`/${city}`}
               className="text-xs text-gray-400 hover:text-white underline"
             >
-              ← {cityInfo.name} 시 전체보기
+              ← {cityInfo.name} 전체보기
             </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {districtInfo.dongs.map((dong) => {
-              const dongHeading = dong.contentHeading || `${dong.name} ${pattern.t}`;
-              const dongDesc = dong.seoDesc || `${dong.name} 출장 마사지 추천. 전문 테라피스트의 프라이빗 힐링 케어.`;
+              // 핵심 키워드 조합: [동] 출장 마사지 [구] [시]
+              const dongFullTitle = `${dong.name} 출장 마사지 ${districtInfo.name} ${cityInfo.name}`;
+              const dongDesc = dong.seoDesc || `${dong.name} 출장 마사지 추천. ${districtInfo.name} 전지역 30분 내 빠른 방문과 프라이빗 힐링 케어.`;
               
               return (
                 <Link
@@ -263,10 +265,10 @@ export default async function DistrictPage({
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-extrabold text-white text-base group-hover:text-[#00ff88] transition-colors truncate">
-                      {dongHeading}
+                      {dongFullTitle}
                     </span>
                     <span className="text-xs text-gray-400 group-hover:text-white font-bold whitespace-nowrap ml-2">
-                      바로가기 →
+                      예약 안내 →
                     </span>
                   </div>
                   <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed">
@@ -285,7 +287,7 @@ export default async function DistrictPage({
           href={`tel:${cityInfo.phone}`}
           className="py-3 rounded-xl font-black text-black bg-[#00ff88] text-sm flex items-center justify-center gap-1 active:scale-95 transition-all shadow-lg"
         >
-          📞 {districtInfo.name} 빠른 예약 연결 ({cityInfo.phone.slice(-4)})
+          📞 {districtInfo.name} 출장 마사지 빠른 예약 ({cityInfo.phone.slice(-4)})
         </a>
       </div>
     </div>

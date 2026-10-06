@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { CITIES_DATA, DOMAIN } from "@/app/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // 검색엔진 XML 파싱 표준 (ISO 8601 포맷)
+  // ISO 8601 포맷
   const lastModified = new Date().toISOString();
 
   // 1. 메인 홈페이지
@@ -15,11 +15,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // 2. 12개 시/군 계층 동적 순회 (시 -> 구 -> 읍/면/동)
+  // 2. 대전 지역 계층 순회 (시 -> 구 -> 동)
   Object.values(CITIES_DATA || {}).forEach((city: any) => {
     if (!city?.slug) return;
 
-    // 2-1. 시/군 단위 URL (/daejeon, /cheongju, /cheonan 등)
+    // 2-1. 시 단위 URL (/daejeon)
     routes.push({
       url: `${DOMAIN}/${city.slug}`,
       lastModified,
@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     (city.districts || []).forEach((district: any) => {
       if (!district?.slug) return;
 
-      // 2-2. 구/군 단위 URL (/daejeon/yuseong 등)
+      // 2-2. 구 단위 URL (/daejeon/yuseong 등)
       routes.push({
         url: `${DOMAIN}/${city.slug}/${district.slug}`,
         lastModified,
@@ -41,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       (district.dongs || []).forEach((dong: any) => {
         if (!dong?.slug) return;
 
-        // 2-3. 동/읍/면 단위 세부 URL (/daejeon/yuseong/bongmyeong 등)
+        // 2-3. 동 단위 세부 URL (/daejeon/yuseong/bongmyeong 등)
         routes.push({
           url: `${DOMAIN}/${city.slug}/${district.slug}/${dong.slug}`,
           lastModified,
