@@ -1,8 +1,6 @@
-import Link from "next/link";
-import { CITIES_DATA, DOMAIN, BRAND_NAME } from "@/app/data";
+import { CITIES_DATA, DOMAIN, BRAND_NAME } from "../../data"; // ⭕ app/data.ts를 참조
+import { CITIES_DATA, DOMAIN, BRAND_NAME } from "../../../data";
 import { notFound } from "next/navigation";
-
-// 50개 순환형 SEO 패턴
 // 규칙 1: 타이틀은 '출장 [수식어] 마사지'로 분리 구조 유지
 // 규칙 2: 디스크립션은 지역명 뒤에 '출장 마사지' 필수 결합
 export const SEO_PATTERNS = [

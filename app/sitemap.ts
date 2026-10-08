@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { CITIES_DATA, DOMAIN } from "@/app/data";
+import { CITIES_DATA, DOMAIN } from "./data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // ISO 8601 포맷
