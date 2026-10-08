@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { CITIES_DATA, DOMAIN, BRAND_NAME } from "../data";
-import { notFound } from "next/navigation";
-
+import Image from "next/image";
+import { CITIES_DATA, DOMAIN, BRAND_NAME } from "./data";
 
 export const metadata = {
   title: BRAND_NAME + " | 대전 출장 프리미엄 마사지 스웨디시 1인샵 S슬림 테라피 정보",
@@ -23,9 +22,9 @@ export const metadata = {
 
 export default function HomePage() {
   const customerServicePhone = "0507-1280-3335";
-  const defaultCitySlug = "daejeon"; // 기본 시/도 슬러그
+  const defaultCitySlug = "daejeon";
 
-  // 대전 5개 자치구 정보 및 구 페이지 경로 매핑
+  // 대전 5개 자치구 정보 및 구/동 슬러그 매핑
   const targetDistricts = [
     {
       name: "유성구",
@@ -39,7 +38,7 @@ export default function HomePage() {
     },
     {
       name: "서구 (둔산권)",
-      slug: "seogu",
+      slug: "seo",
       desc: "둔산동·탄방동·월평동·갈마동·가수원",
       popularDongs: [
         { name: "둔산동", slug: "dunsan" },
@@ -54,7 +53,7 @@ export default function HomePage() {
       popularDongs: [
         { name: "대흥동", slug: "daeheung" },
         { name: "은행동", slug: "eunhaeng" },
-        { name: "유천동", slug: "yucheon" },
+        { name: "선화동", slug: "seonhwa" },
       ],
     },
     {
@@ -63,7 +62,7 @@ export default function HomePage() {
       desc: "대전역·용전동(복합터미널)·가양동",
       popularDongs: [
         { name: "용전동", slug: "yongjeon" },
-        { name: "가양동", slug: "gayang" },
+        { name: "가양동", slug: "gaya" },
       ],
     },
     {
