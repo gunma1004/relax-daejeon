@@ -1,7 +1,7 @@
-import { CITIES_DATA, DOMAIN, BRAND_NAME } from "../../data";
+// app/[city]/[district]/page.tsx 맨 위:
+import Link from "next/link"; // 👈 이 줄 추가
+import { CITIES_DATA, DOMAIN, BRAND_NAME } from "@/app/data";
 import { notFound } from "next/navigation";
-// 규칙 1: 타이틀은 '출장 [수식어] 마사지'로 분리 구조 유지
-// 규칙 2: 디스크립션은 지역명 뒤에 '출장 마사지' 필수 결합
 export const SEO_PATTERNS = [
   { t: "출장 S슬림 마사지 & 림프 케어", d: "출장 마사지 전문 힐링 가이드. 붓기 완화 및 전신 S슬림 림프 테라피와 정찰제 가격 정보." },
   { t: "출장 스웨디시 마사지 & 감성 케어", d: "출장 마사지 전문 힐링 가이드. 부드러운 림프 순환 테라피와 정찰제 가격 정보." },

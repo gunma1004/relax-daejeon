@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CITIES_DATA, DOMAIN, BRAND_NAME } from "./data";
+import { CITIES_DATA, DOMAIN, BRAND_NAME } from "@/app/data";
 
 export const metadata = {
   title: BRAND_NAME + " | 대전 출장 프리미엄 마사지 스웨디시 1인샵 S슬림 테라피 정보",
