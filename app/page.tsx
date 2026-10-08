@@ -5,14 +5,14 @@ import { CITIES_DATA, DOMAIN, BRAND_NAME } from "@/app/data";
 export const metadata = {
   title: `${BRAND_NAME} | 대전 출장 프리미엄 마사지·스웨디시·1인샵 & S슬림 테라피 정보`,
   description:
-    "대전 유성구, 둔산동, 서구, 중구 등 대전 전지역 스웨디시, 아로마, 타이, S슬림 체형관리 1인샵 매장 정보 및 코스별 가격 안내.",
+    "대전 출장마사지 유성구, 둔산동, 서구, 중구 등 대전 전지역 힐링 스웨디시·체형관리 정보. 엄선된, 아로마, 타이 마사지 추천 및 빠른 예약 안내.",
   alternates: {
     canonical: DOMAIN,
   },
   openGraph: {
     title: `${BRAND_NAME} | 대전 출장 프리미엄 마사지 & S슬림 바디케어`,
     description:
-      "유성, 둔산, 봉명, 탄방 등 대전 전지역 엄선된 스웨디시·마사지·1인샵 제휴 샵 안내.",
+      "유성, 둔산, 봉명, 탄방 등 대전 출장마사지 전지역 엄선된 스웨디시·마사지·1인샵 제휴 샵 안내.",
     url: DOMAIN,
     siteName: BRAND_NAME,
     locale: "ko_KR",
